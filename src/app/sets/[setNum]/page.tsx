@@ -40,14 +40,17 @@ const CarFrame = ({ car }: { car: Car }) => (
   </Frame>
 );
 
-/** Radio tabs (no JS). `panes` are [label, content] pairs. */
-function Tabs({ name, panes }: { name: string; panes: [string, ReactNode][] }) {
+/**
+ * Radio tabs (no JS). `panes` are [label, content] pairs.
+ * `bottom` puts the tabs under bare content, so its top edge lines up with neighbours.
+ */
+function Tabs({ name, panes, bottom }: { name: string; panes: [string, ReactNode][]; bottom?: boolean }) {
   return (
-    <div className="tabs tabs-lift">
+    <div className={bottom ? "tabs tabs-border tabs-bottom" : "tabs tabs-lift"}>
       {panes.map(([label, content], i) => (
         <Fragment key={label}>
           <input type="radio" name={name} className="tab" aria-label={label} defaultChecked={i === 0} />
-          <div className="tab-content border-base-300 bg-base-200 p-2">
+          <div className={bottom ? "tab-content pb-1" : "tab-content border-base-300 bg-base-200 p-2"}>
             {content}
           </div>
         </Fragment>
@@ -136,7 +139,7 @@ export default async function SetPage({ params }: PageProps<"/sets/[setNum]">) {
       {/* Desktop: LEGO model beside the real car(s) */}
       <div className="mb-8 hidden gap-4 lg:grid lg:grid-cols-2">
         <LegoFrame set={set} />
-        {carPanes.length === 1 ? carPanes[0][1] : <Tabs name="car-desktop" panes={carPanes} />}
+        {carPanes.length === 1 ? carPanes[0][1] : <Tabs name="car-desktop" panes={carPanes} bottom />}
       </div>
 
       {/* Mobile: tab between LEGO and real */}
