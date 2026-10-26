@@ -2,13 +2,15 @@ import Link from "next/link";
 import { setImage, type LegoSet } from "@/data";
 import { SetImage } from "./SetImage";
 
-/** Small set tile: lit when owned, dimmed when missing, gold-ringed when wishlisted. */
+/** Small set tile: lit when owned, dimmed when missing, gold-ringed when wishlisted, dashed for bonus polybags. */
 export function Thumb({ set }: { set: LegoSet }) {
   return (
     <Link
       href={`/sets/${set.setNum}`}
       title={`${set.setNum} ${set.name}${set.owned ? " (owned)" : set.wishlist ? " (wishlist)" : ""}`}
       className={`group relative block aspect-[4/3] overflow-hidden rounded-md border bg-white transition hover:border-primary ${
+        set.polybag ? "border-dashed" : ""
+      } ${
         set.owned
           ? "border-success ring-1 ring-success/50"
           : set.wishlist

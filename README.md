@@ -19,6 +19,7 @@ Everything personal is in [`src/data/me.ts`](src/data/me.ts). The catalog ([`src
 | `wishlist` | Set numbers you want next. They get a gold ★ badge and a Wishlist tab in the garage. |
 | `favorites` | Set numbers you love most. They get a ♥ and a Favorites filter in the garage. |
 | `heroCar` | Shown as a big banner at the top of the garage, with the real photo, the LEGO model and headline stats. Use a car id from `sets.ts` (e.g. `"ferrari-f40"`, which picks the right car in two-car sets) or a set number. `""` hides it. |
+| `showPolybags` | Small promo polybags (30xxx) are mini builds that were sold cheaply or given away. They never count toward completion; they show as a separate "bonus polybags" count. `false` hides them from the garage, seasons and brands views. |
 | `units` | `"imperial"` (mph, lb, lb-ft, 0–62 mph) or `"metric"` (km/h, kg, Nm, 0–100 km/h). |
 | `teamColor` | Accent color: `racing-red`, `ferrari`, `mclaren`, `mercedes`, `red-bull`, `aston-martin`, `alpine`, `williams`, `gulf`, or any hex such as `"#ff8000"`. |
 

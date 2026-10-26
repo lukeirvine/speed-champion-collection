@@ -28,6 +28,15 @@ export const allSets: LegoSet[] = sets
   }))
   .sort((a, b) => a.year - b.year || a.setNum.localeCompare(b.setNum));
 
+/** Full-size sets: completion is measured against these. */
+export const mainSets = allSets.filter((s) => !s.polybag);
+
+/** Small promo polybags: tracked as a bonus, outside the headline numbers. */
+export const polybags = allSets.filter((s) => s.polybag);
+
+/** What the list views show, per `me.showPolybags`. */
+export const visibleSets = me.showPolybags ? allSets : mainSets;
+
 /** The car pinned by `me.heroCar` (a car id, or a set number meaning its first car). */
 export const hero: { set: LegoSet; car: Car } | undefined = (() => {
   if (!me.heroCar) return undefined;
@@ -74,8 +83,10 @@ export function getSet(setNum: string): LegoSet | undefined {
 }
 
 export function neighbors(setNum: string) {
-  const i = allSets.findIndex((s) => s.setNum === setNum);
-  return { prev: allSets[i - 1], next: allSets[i + 1] };
+  // A hidden polybag's page still steps through every set.
+  const list = visibleSets.some((s) => s.setNum === setNum) ? visibleSets : allSets;
+  const i = list.findIndex((s) => s.setNum === setNum);
+  return { prev: list[i - 1], next: list[i + 1] };
 }
 
 export function imageCredit(carId: string): ImageCredit | undefined {
@@ -86,14 +97,10 @@ const uniq = <T,>(xs: T[]) => [...new Set(xs)];
 
 export const setBrands = (set: LegoSet) => uniq(set.cars.map((c) => c.make));
 
-export const years = () => uniq(allSets.map((s) => s.year));
+export const years = () => uniq(visibleSets.map((s) => s.year));
 
 export const brands = () =>
-  uniq(allSets.flatMap(setBrands)).sort((a, b) => a.localeCompare(b));
-
-export function allCars(): (Car & { set: LegoSet })[] {
-  return allSets.flatMap((set) => set.cars.map((car) => ({ ...car, set })));
-}
+  uniq(visibleSets.flatMap(setBrands)).sort((a, b) => a.localeCompare(b));
 
 export interface Progress {
   key: string;
@@ -101,10 +108,10 @@ export interface Progress {
   total: number;
 }
 
-/** Counts sets per group key; a set with cars in two groups counts toward both. */
+/** Counts main sets per group key; a set with cars in two groups counts toward both. */
 function progressBy(keysOf: (s: LegoSet) => string[], order?: string[]): Progress[] {
   const map = new Map<string, Progress>();
-  for (const set of allSets) {
+  for (const set of mainSets) {
     for (const key of uniq(keysOf(set))) {
       const p = map.get(key) ?? { key, owned: 0, total: 0 };
       p.total++;
@@ -126,20 +133,22 @@ export const progressByGT = () =>
 export const progressByRegion = () =>
   progressBy((s) => s.cars.map((c) => c.region), REGIONS);
 
+/** Headline numbers cover main sets only; polybags are reported on their own. */
 export function stats() {
-  const owned = allSets.filter((s) => s.owned);
+  const owned = mainSets.filter((s) => s.owned);
   const sum = (xs: LegoSet[], f: (s: LegoSet) => number) =>
     xs.reduce((n, s) => n + f(s), 0);
   return {
-    totalSets: allSets.length,
+    totalSets: mainSets.length,
     ownedSets: owned.length,
-    // Unique cars: a polybag and a full set can depict the same car.
-    totalCars: uniq(allSets.flatMap((s) => s.cars.map((c) => c.id))).length,
+    totalCars: uniq(mainSets.flatMap((s) => s.cars.map((c) => c.id))).length,
     ownedCars: uniq(owned.flatMap((s) => s.cars.map((c) => c.id))).length,
-    totalPieces: sum(allSets, (s) => s.pieces),
+    totalPieces: sum(mainSets, (s) => s.pieces),
     ownedPieces: sum(owned, (s) => s.pieces),
     ownedBrands: uniq(owned.flatMap(setBrands)).length,
-    totalBrands: brands().length,
+    totalBrands: uniq(mainSets.flatMap(setBrands)).length,
+    ownedPolybags: polybags.filter((s) => s.owned).length,
+    totalPolybags: polybags.length,
   };
 }
 

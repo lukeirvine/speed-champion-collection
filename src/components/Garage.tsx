@@ -2,19 +2,19 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { allSets, brands, GT_ORDER, REGIONS, years } from "@/data";
+import { brands, GT_ORDER, REGIONS, visibleSets, years } from "@/data";
 import { applyFilters, DEFAULT_FILTERS, parseFilters, toSearchParams, type Filters, type Show } from "@/lib/filter";
 import { SetGrid } from "./SetGrid";
 
-const ownedCount = allSets.filter((s) => s.owned).length;
+const ownedCount = visibleSets.filter((s) => s.owned).length;
 const SHOW_TABS: { value: Show; label: string; count: number }[] = [
-  { value: "all", label: "All", count: allSets.length },
+  { value: "all", label: "All", count: visibleSets.length },
   { value: "owned", label: "Owned", count: ownedCount },
-  { value: "missing", label: "Missing", count: allSets.length - ownedCount },
-  { value: "wishlist", label: "Wishlist", count: allSets.filter((s) => s.wishlist).length },
+  { value: "missing", label: "Missing", count: visibleSets.length - ownedCount },
+  { value: "wishlist", label: "Wishlist", count: visibleSets.filter((s) => s.wishlist).length },
 ];
-const favoriteCount = allSets.filter((s) => s.favorite).length;
-const gtOptions = GT_ORDER.filter((gt) => allSets.some((s) => s.cars.some((c) => c.gtCategory === gt)));
+const favoriteCount = visibleSets.filter((s) => s.favorite).length;
+const gtOptions = GT_ORDER.filter((gt) => visibleSets.some((s) => s.cars.some((c) => c.gtCategory === gt)));
 
 function Select({
   label,
@@ -48,7 +48,7 @@ export function Garage() {
   const router = useRouter();
   const pathname = usePathname();
   const filters = parseFilters(useSearchParams());
-  const results = applyFilters(allSets, filters);
+  const results = applyFilters(visibleSets, filters);
   // Local copy so typing isn't fighting the async URL update.
   const [query, setQuery] = useState(filters.q);
   // ...but clear it when the URL drops the query (e.g. the Garage nav link).
@@ -130,7 +130,7 @@ export function Garage() {
       </div>
 
       <p className="mb-3 text-sm text-base-content/60">
-        Showing <span className="font-display text-base-content">{results.length}</span> of {allSets.length} sets
+        Showing <span className="font-display text-base-content">{results.length}</span> of {visibleSets.length} sets
       </p>
 
       {results.length ? (

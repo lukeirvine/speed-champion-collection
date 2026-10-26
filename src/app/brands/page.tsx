@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { Thumb } from "@/components/Thumb";
-import { allSets, progressByBrand, setBrands } from "@/data";
+import { progressByBrand, setBrands, visibleSets } from "@/data";
 
 export const metadata: Metadata = { title: "Brands" };
 
@@ -15,7 +15,7 @@ export default function BrandsPage() {
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {rows.map(({ key: brand, owned, total }) => {
-          const sets = allSets.filter((s) => setBrands(s).includes(brand));
+          const sets = visibleSets.filter((s) => setBrands(s).includes(brand));
           return (
             <section key={brand} className="card border border-base-300 bg-base-200">
               <div className="card-body gap-3 p-5">

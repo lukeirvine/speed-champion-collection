@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { Thumb } from "@/components/Thumb";
-import { allSets, years } from "@/data";
+import { visibleSets, years } from "@/data";
 
 export const metadata: Metadata = { title: "Seasons" };
 
 export default function TimelinePage() {
   const seasons = years()
     .reverse()
-    .map((year) => ({ year, sets: allSets.filter((s) => s.year === year) }));
+    .map((year) => ({ year, sets: visibleSets.filter((s) => s.year === year) }));
 
   return (
     <>
@@ -17,8 +17,10 @@ export default function TimelinePage() {
 
       <ol className="relative ml-2 border-l-2 border-base-300">
         {seasons.map(({ year, sets }) => {
-          const owned = sets.filter((s) => s.owned).length;
-          const complete = owned === sets.length;
+          // Completion counts main sets; polybag thumbs are shown as a bonus.
+          const main = sets.filter((s) => !s.polybag);
+          const owned = main.filter((s) => s.owned).length;
+          const complete = owned === main.length;
           return (
             <li key={year} className="relative pb-10 pl-6 last:pb-0">
               <span
@@ -31,7 +33,7 @@ export default function TimelinePage() {
                   {year}
                 </Link>
                 <span className="text-sm text-base-content/60">
-                  <span className="font-display text-success">{owned}</span> / {sets.length} collected
+                  <span className="font-display text-success">{owned}</span> / {main.length} collected
                 </span>
                 {complete && <span className="badge badge-success badge-sm font-display">Full season</span>}
               </div>

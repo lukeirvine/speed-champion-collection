@@ -42,7 +42,11 @@ export function SetCard({ set }: { set: LegoSet }) {
               <span>{set.cars.length} cars</span>
             </>
           )}
-          {set.polybag && <span className="badge badge-ghost badge-xs">Polybag</span>}
+          {set.polybag && (
+            <span className="badge badge-ghost badge-xs" title="Bonus polybag: doesn't count toward completion">
+              Bonus polybag
+            </span>
+          )}
         </div>
         <div className="mt-1 flex flex-wrap gap-1">
           {[...new Set(set.cars.map((c) => c.gtCategory))].map((gt) => (

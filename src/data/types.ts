@@ -102,6 +102,8 @@ export interface Profile {
   favorites: string[];
   /** Featured at the top of the garage: a car id (e.g. "ferrari-f40") or a set number. "" for none. */
   heroCar: string;
+  /** Show the small promo polybags in the garage, seasons and brands views. They never count toward completion. */
+  showPolybags: boolean;
   /** metric: km/h, kg, Nm, 0–100 km/h. imperial: mph, lb, lb-ft, 0–62 mph. */
   units: "metric" | "imperial";
   /** A preset name, or any hex color like "#ff8000". */

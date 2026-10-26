@@ -4,7 +4,7 @@ import { HeroCar } from "@/components/HeroCar";
 import { PageHeader } from "@/components/PageHeader";
 import { RadialProgress } from "@/components/RadialProgress";
 import { SetGrid } from "@/components/SetGrid";
-import { allSets, hero, ownerPossessive, pct, stats } from "@/data";
+import { hero, me, ownerPossessive, pct, stats, visibleSets } from "@/data";
 
 export default function Home() {
   const s = stats();
@@ -20,6 +20,11 @@ export default function Home() {
               <span className="text-success">{s.ownedSets}</span>
               <span className="text-base-content/40"> / {s.totalSets}</span>
             </div>
+            {me.showPolybags && (
+              <div className="text-xs text-base-content/50">
+                + {s.ownedPolybags} / {s.totalPolybags} bonus polybags
+              </div>
+            )}
           </div>
           <RadialProgress value={p} />
         </div>
@@ -27,7 +32,7 @@ export default function Home() {
 
       {hero && <HeroCar set={hero.set} car={hero.car} />}
 
-      <Suspense fallback={<SetGrid sets={[...allSets].reverse()} />}>
+      <Suspense fallback={<SetGrid sets={[...visibleSets].reverse()} />}>
         <Garage />
       </Suspense>
     </>

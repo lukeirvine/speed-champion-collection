@@ -135,6 +135,11 @@ export default async function SetPage({ params }: PageProps<"/sets/[setNum]">) {
         <h1 className="font-display text-3xl italic sm:text-4xl">{set.name}</h1>
         <OwnedBadge set={set} />
         {set.favorite && <span className="badge badge-primary badge-outline">♥ Favorite</span>}
+        {set.polybag && (
+          <span className="badge badge-ghost" title="Small promo set; doesn't count toward completion">
+            Bonus polybag
+          </span>
+        )}
         {hero?.set.setNum === set.setNum && <span className="badge badge-primary">Hero car</span>}
       </div>
 

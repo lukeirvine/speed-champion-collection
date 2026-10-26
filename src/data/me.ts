@@ -71,11 +71,16 @@ export const me: Profile = {
     "76923", // Lamborghini Lambo V12 Vision Gran Turismo
     "77253", // Bugatti Vision Gran Turismo
     "77256", // Time Machine from Back to the Future
+    "77261", // Ferrari 499P
   ],
 
   // Featured at the top of the garage. A car id from sets.ts (e.g. "ferrari-f40",
   // handy for two-car sets) or a set number. "" hides it.
-  heroCar: "lamborghini-lambo-v12-vision-gt",
+  // heroCar: "lamborghini-lambo-v12-vision-gt",
+
+  // Small promo polybags (30xxx): mini builds sold cheaply or given away in promotions.
+  // They're tracked as a bonus and never count toward completion. false hides them.
+  showPolybags: false,
 
   units: "imperial",
 

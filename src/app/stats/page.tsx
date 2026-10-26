@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { ProgressList } from "@/components/ProgressList";
 import { RadialProgress } from "@/components/RadialProgress";
-import { pct, progressByBrand, progressByGT, progressByRegion, progressByYear, stats } from "@/data";
+import { me, pct, progressByBrand, progressByGT, progressByRegion, progressByYear, stats } from "@/data";
 
 export const metadata: Metadata = { title: "Pit Wall" };
 
@@ -28,6 +28,11 @@ export default function StatsPage() {
             className="text-primary text-3xl"
           />
           <p className="mt-3 text-xs uppercase tracking-widest text-base-content/50">Overall completion</p>
+          {me.showPolybags && (
+            <p className="mt-1 text-xs text-base-content/50">
+              + {s.ownedPolybags} / {s.totalPolybags} bonus polybags
+            </p>
+          )}
         </div>
 
         <div className="grid grid-cols-2 gap-px overflow-hidden rounded-box border border-base-300 bg-base-300 xl:grid-cols-4">
