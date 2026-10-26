@@ -1,26 +1,110 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@plugin "daisyui" {
+  themes: false;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* "Pit Lane Night": carbon black, racing red, kerb yellow, pit-wall teal */
+@plugin "daisyui/theme" {
+  name: "pitlane";
+  default: true;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: #0b0b0d;
+  --color-base-200: #141418;
+  --color-base-300: #1d1d23;
+  --color-base-content: #e8e8ea;
+  --color-primary: #e10600;
+  --color-primary-content: #ffffff;
+  --color-secondary: #f5c400;
+  --color-secondary-content: #121212;
+  --color-accent: #00d2be;
+  --color-accent-content: #031614;
+  --color-neutral: #2a2a31;
+  --color-neutral-content: #d4d4d8;
+  --color-info: #3b82f6;
+  --color-info-content: #ffffff;
+  --color-success: #22c55e;
+  --color-success-content: #04140a;
+  --color-warning: #f59e0b;
+  --color-warning-content: #1a1000;
+  --color-error: #ef4444;
+  --color-error-content: #ffffff;
+
+  --radius-selector: 0.25rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.375rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --font-sans: var(--font-titillium), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-russo), var(--font-titillium), sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-base-100);
+  color: var(--color-base-content);
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+/* Carbon-fibre weave */
+@utility carbon-bg {
+  background-color: #0b0b0d;
+  background-image:
+    linear-gradient(27deg, #121216 5px, transparent 5px),
+    linear-gradient(207deg, #121216 5px, transparent 5px),
+    linear-gradient(27deg, #18181d 5px, transparent 5px),
+    linear-gradient(207deg, #18181d 5px, transparent 5px),
+    linear-gradient(90deg, #0f0f12 10px, transparent 10px),
+    linear-gradient(#141418 25%, #111114 25%, #111114 50%, transparent 50%, transparent 75%, #17171b 75%, #17171b);
+  background-size: 20px 20px;
+  background-position:
+    0 5px,
+    10px 0,
+    0 10px,
+    10px 5px,
+    0 0,
+    0 0;
+}
+
+/* Red/white kerb stripe */
+@utility kerb {
+  height: 6px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-primary) 0 14px,
+    #f4f4f5 14px 28px
+  );
+}
+
+/* Chequered flag strip */
+@utility checkered {
+  height: 10px;
+  background-color: #f4f4f5;
+  background-image:
+    linear-gradient(45deg, #0b0b0d 25%, transparent 25%, transparent 75%, #0b0b0d 75%),
+    linear-gradient(45deg, #0b0b0d 25%, transparent 25%, transparent 75%, #0b0b0d 75%);
+  background-size: 10px 10px;
+  background-position:
+    0 0,
+    5px 5px;
+}
+
+/* Slanted racing label */
+@utility slant {
+  transform: skewX(-12deg);
+  & > * {
+    display: inline-block;
+    transform: skewX(12deg);
+  }
 }

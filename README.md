@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Speed Champions Garage
 
-## Getting Started
-
-First, run the development server:
+A personal tracker for LEGO Speed Champions sets (8-wide era, 2020 onward). It's built with Next.js, Tailwind and daisyUI, in a dark "Pit Lane Night" theme. There is no database: everything lives in one data file.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # static site in ./out, host it anywhere
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Marking a set as owned
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open [`src/data/sets.ts`](src/data/sets.ts), find the set, and change `owned: false` to `owned: true`. Every view (garage, seasons, brands, pit wall) updates from that.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Views
 
-## Learn More
+| Route | What it shows |
+| --- | --- |
+| `/` | **Garage**: every set with a picture. Filter by Owned/Missing, year, brand, GT class and region, or search. Filters are kept in the URL. |
+| `/sets/<number>` | **Set detail**: the LEGO model next to a photo of the real car, plus its description, stats, and Gran Turismo-style tags (Gr.1, N500, European, MR…). |
+| `/timeline` | **Seasons**: sets grouped by release year, with owned sets lit up. |
+| `/brands` | **Brands**: completion per manufacturer. |
+| `/stats` | **Pit Wall**: overall completion, plus a breakdown by season, GT class, region and brand. |
 
-To learn more about Next.js, take a look at the following resources:
+## Adding a new set
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Add an entry to `sets.ts`. The field meanings, including the GT class rules, are documented in [`src/data/types.ts`](src/data/types.ts). Then run:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run images
+```
 
-## Deploy on Vercel
+## Images
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`npm run images` downloads anything missing into `public/images/` as resized WebP files:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Set photos** come from Rebrickable's CDN, falling back to Brickset. They go to `public/images/sets/<setNum>.webp`.
+- **Real-car photos** are the lead image of the car's Wikipedia article. They go to `public/images/cars/<carId>.webp`. Author and license are recorded in `src/data/image-credits.json` and shown on the detail page.
+
+Existing files are never overwritten. To use your own picture, save it with the same filename. To re-download one:
+
+```bash
+npm run images -- --force 76916 porsche-963
+```
+
+If Wikipedia's lead image shows the wrong car, set `photo: "File:Something.jpg"` (a Wikimedia Commons file) on that car in `sets.ts` and force a re-fetch.
+
+LEGO® and Speed Champions are trademarks of the LEGO Group. This is a personal, non-commercial project.
