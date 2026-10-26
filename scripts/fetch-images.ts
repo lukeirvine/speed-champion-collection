@@ -1,6 +1,6 @@
 /**
  * Downloads set photos (Rebrickable, falling back to Brickset) and real-car photos
- * (Wikipedia / Wikimedia Commons) into public/images as resized WebP.
+ * (Wikipedia / Wikimedia Commons, or a car's `photo` URL) into public/images as resized WebP.
  *
  *   npm run images                 # fetch anything missing
  *   npm run images -- --force 76916 porsche-963   # re-fetch specific sets / cars
@@ -68,8 +68,13 @@ async function wikiApi(params: Record<string, string>) {
   return (await fetchOk(`https://en.wikipedia.org/w/api.php?${qs}`)).json();
 }
 
-/** Resolves the car's photo: explicit `photo` override, else the article's lead image. */
+/** Resolves the car's photo: explicit `photo` URL or Commons file, else the article's lead image. */
 async function resolveCarPhoto(car: Car): Promise<{ url: string; credit: Credit }> {
+  if (car.photo && /^https?:\/\//.test(car.photo)) {
+    if (!car.photoCredit) throw new Error("photo URL needs a photoCredit");
+    const { author, license, sourceUrl } = car.photoCredit;
+    return { url: car.photo, credit: { author, license: license ?? null, sourceUrl: sourceUrl ?? car.photo } };
+  }
   let fileTitle = car.photo;
   if (!fileTitle) {
     const data = await wikiApi({ action: "query", titles: car.wikipedia, prop: "pageimages", piprop: "name", redirects: "1" });

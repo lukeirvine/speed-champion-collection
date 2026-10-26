@@ -34,6 +34,13 @@ export type Drivetrain = "FR" | "MR" | "RR" | "FF" | "4WD";
 
 export type CarType = "Road" | "Race" | "Concept" | "Fictional";
 
+export interface PhotoCredit {
+  author: string;
+  license?: string;
+  /** Page to link the credit to; defaults to the photo URL. */
+  sourceUrl?: string;
+}
+
 export interface Car {
   /** Kebab-case id, also the image filename: public/images/cars/{id}.webp */
   id: string;
@@ -56,8 +63,13 @@ export interface Car {
   tags: string[];
   /** English Wikipedia article title used for the real-car photo and the "Read more" link. */
   wikipedia: string;
-  /** Optional Wikimedia Commons file (e.g. "File:Foo.jpg") to use instead of the article's lead image. */
+  /**
+   * Optional real-car photo to use instead of the article's lead image: a Wikimedia
+   * Commons file (e.g. "File:Foo.jpg") or a direct image URL (which needs `photoCredit`).
+   */
   photo?: string;
+  /** Credit for a `photo` URL. Commons files are credited automatically. */
+  photoCredit?: PhotoCredit;
   description: string;
 }
 
