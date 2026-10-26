@@ -67,12 +67,13 @@ export function Garage() {
   return (
     <>
       <div className="mb-6 flex flex-col gap-3 rounded-box border border-base-300 bg-base-200/80 p-3 backdrop-blur lg:flex-row lg:items-center">
-        <div role="tablist" className="tabs tabs-box tabs-sm shrink-0 flex-nowrap bg-base-300 [&>.tab]:px-2.5">
+        <div role="tablist" className="tabs tabs-box tabs-sm shrink-0 flex-nowrap overflow-x-auto bg-base-300 [&>.tab]:flex-nowrap [&>.tab]:px-2.5 max-sm:[&>.tab]:flex-1 max-sm:[&>.tab]:px-1">
+          {/* Counts stack under the labels on phones — inline they don't fit. */}
           {SHOW_TABS.map((t) => (
             <button
               key={t.value}
               role="tab"
-              className={`tab gap-1.5 font-display ${filters.show === t.value ? "tab-active" : ""}`}
+              className={`tab gap-1.5 font-display max-sm:h-auto max-sm:flex-col max-sm:gap-0 max-sm:py-1 max-sm:leading-tight ${filters.show === t.value ? "tab-active" : ""}`}
               onClick={() => update({ show: t.value })}
             >
               {t.label}
