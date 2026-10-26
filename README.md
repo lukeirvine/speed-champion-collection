@@ -1,6 +1,6 @@
 # Speed Champions Garage
 
-A personal tracker for LEGO Speed Champions sets (8-wide era, 2020 onward). It's built with Next.js, Tailwind and daisyUI, in a dark "Pit Lane Night" theme. There is no database: everything lives in one data file.
+A personal tracker for LEGO Speed Champions sets (8-wide era, 2020 onward). It's built with Next.js, Tailwind and daisyUI, in a dark "Pit Lane Night" theme. There is no database: the catalog is one TypeScript file and your collection is another.
 
 ```bash
 npm install
@@ -8,9 +8,19 @@ npm run dev      # http://localhost:3000
 npm run build    # static site in ./out, host it anywhere
 ```
 
-## Marking a set as owned
+## Make it yours
 
-Open [`src/data/sets.ts`](src/data/sets.ts), find the set, and change `owned: false` to `owned: true`. Every view (garage, seasons, brands, pit wall) updates from that.
+Everything personal is in [`src/data/me.ts`](src/data/me.ts). The catalog ([`src/data/sets.ts`](src/data/sets.ts)) is the same for everyone, so you can pull in new sets later without conflicts.
+
+| Field | What it does |
+| --- | --- |
+| `firstName` | Names the site, e.g. "Luke's LEGO Speed Champions Collection" in the browser tab and header. Leave `""` for a generic title. |
+| `owned` | Set numbers you own. Every view updates from this list. |
+| `wishlist` | Set numbers you want next. They get a gold ★ badge and a Wishlist tab in the garage. |
+| `units` | `"imperial"` (mph, lb, lb-ft, 0–62 mph) or `"metric"` (km/h, kg, Nm, 0–100 km/h). |
+| `teamColor` | Accent colour: `racing-red`, `ferrari`, `mclaren`, `mercedes`, `red-bull`, `aston-martin`, `alpine`, `williams`, `gulf`, or any hex such as `"#ff8000"`. |
+
+If `owned` or `wishlist` lists a set number that isn't in the catalog, the build stops with an error, so a typo can't fail silently.
 
 ## Views
 

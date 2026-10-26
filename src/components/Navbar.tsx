@@ -22,7 +22,7 @@ function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" || pathname.startsWith("/sets") : pathname.startsWith(href);
 }
 
-export function Navbar() {
+export function Navbar({ owner }: { owner: string }) {
   const pathname = usePathname();
 
   return (
@@ -32,6 +32,7 @@ export function Navbar() {
         <nav className="navbar mx-auto max-w-7xl px-4">
           <div className="flex-1">
             <Link href="/" className="flex items-center gap-2">
+              {owner && <span className="font-display text-lg italic tracking-wider text-base-content/60">{owner.toUpperCase()}</span>}
               <span className="slant bg-primary px-2 py-0.5 font-display text-lg text-primary-content">
                 <span>SPEED</span>
               </span>

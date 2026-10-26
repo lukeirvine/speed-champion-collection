@@ -1,6 +1,6 @@
 import { setBrands, type LegoSet } from "@/data";
 
-export type Show = "all" | "owned" | "missing";
+export type Show = "all" | "owned" | "missing" | "wishlist";
 export type Sort = "newest" | "oldest" | "name" | "pieces";
 
 export interface Filters {
@@ -58,7 +58,10 @@ function matchesQuery(set: LegoSet, q: string) {
 export function applyFilters(sets: LegoSet[], f: Filters): LegoSet[] {
   const result = sets.filter(
     (s) =>
-      (f.show === "all" || s.owned === (f.show === "owned")) &&
+      (f.show === "all" ||
+        (f.show === "owned" && s.owned) ||
+        (f.show === "missing" && !s.owned) ||
+        (f.show === "wishlist" && s.wishlist)) &&
       (!f.q || matchesQuery(s, f.q)) &&
       (!f.year || String(s.year) === f.year) &&
       (!f.brand || setBrands(s).includes(f.brand)) &&

@@ -1,13 +1,13 @@
-import type { LegoSet } from "./types";
+import type { CatalogSet } from "./types";
 
 /**
- * The whole catalog. To mark a set as yours, flip `owned: false` → `owned: true`.
+ * The whole catalog: every 8-wide Speed Champions set. Ownership lives in ./me.ts.
  * Field meanings and GT class rules are documented in ./types.ts.
  */
-export const sets: LegoSet[] = [
+export const sets: CatalogSet[] = [
   // ──────────────── 2020 ────────────────
   {
-    setNum: "30342", owned: false,
+    setNum: "30342",
     name: "Lamborghini Huracán Super Trofeo EVO", year: 2020, pieces: 70, polybag: true,
     cars: [
       {
@@ -22,7 +22,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76895", owned: true,
+    setNum: "76895",
     name: "Ferrari F8 Tributo", year: 2020, pieces: 275,
     cars: [
       {
@@ -37,7 +37,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76896", owned: false,
+    setNum: "76896",
     name: "Nissan GT-R NISMO", year: 2020, pieces: 298,
     cars: [
       {
@@ -52,7 +52,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76897", owned: true,
+    setNum: "76897",
     name: "1985 Audi Sport quattro S1", year: 2020, pieces: 250,
     cars: [
       {
@@ -67,7 +67,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76898", owned: false,
+    setNum: "76898",
     name: "Formula E Panasonic Jaguar Racing GEN2 Car & Jaguar I-PACE eTROPHY", year: 2020, pieces: 565,
     cars: [
       {
@@ -91,7 +91,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76899", owned: false,
+    setNum: "76899",
     name: "Lamborghini Urus ST-X & Huracán Super Trofeo EVO", year: 2020, pieces: 663,
     cars: [
       {
@@ -117,7 +117,7 @@ export const sets: LegoSet[] = [
 
   // ──────────────── 2021 ────────────────
   {
-    setNum: "30343", owned: false,
+    setNum: "30343",
     name: "McLaren Elva", year: 2021, pieces: 85, polybag: true,
     cars: [
       {
@@ -132,7 +132,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76900", owned: true,
+    setNum: "76900",
     name: "Koenigsegg Jesko", year: 2021, pieces: 280,
     cars: [
       {
@@ -147,7 +147,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76901", owned: true,
+    setNum: "76901",
     name: "Toyota GR Supra", year: 2021, pieces: 299,
     cars: [
       {
@@ -162,7 +162,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76902", owned: true,
+    setNum: "76902",
     name: "McLaren Elva", year: 2021, pieces: 263,
     cars: [
       {
@@ -177,7 +177,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76903", owned: true,
+    setNum: "76903",
     name: "Chevrolet Corvette C8.R Race Car and 1968 Chevrolet Corvette", year: 2021, pieces: 512,
     cars: [
       {
@@ -201,7 +201,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76904", owned: false,
+    setNum: "76904",
     name: "Mopar Dodge//SRT Top Fuel Dragster and 1970 Dodge Challenger T/A", year: 2021, pieces: 627,
     cars: [
       {
@@ -225,7 +225,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76905", owned: true,
+    setNum: "76905",
     name: "Ford GT Heritage Edition and Bronco R", year: 2021, pieces: 660,
     cars: [
       {
@@ -251,7 +251,7 @@ export const sets: LegoSet[] = [
 
   // ──────────────── 2022 ────────────────
   {
-    setNum: "30434", owned: false,
+    setNum: "30434",
     name: "Aston Martin Valkyrie AMR Pro", year: 2022, pieces: 97, polybag: true,
     cars: [
       {
@@ -266,7 +266,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76906", owned: true,
+    setNum: "76906",
     name: "1970 Ferrari 512 M", year: 2022, pieces: 291,
     cars: [
       {
@@ -281,7 +281,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76907", owned: true,
+    setNum: "76907",
     name: "Lotus Evija", year: 2022, pieces: 247,
     cars: [
       {
@@ -296,7 +296,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76908", owned: true,
+    setNum: "76908",
     name: "Lamborghini Countach", year: 2022, pieces: 262,
     cars: [
       {
@@ -311,7 +311,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76909", owned: true,
+    setNum: "76909",
     name: "Mercedes-AMG F1 W12 E Performance & Mercedes-AMG Project One", year: 2022, pieces: 564,
     cars: [
       {
@@ -335,7 +335,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76910", owned: false,
+    setNum: "76910",
     name: "Aston Martin Valkyrie AMR Pro and Aston Martin Vantage GT3", year: 2022, pieces: 592,
     cars: [
       {
@@ -359,7 +359,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76911", owned: true,
+    setNum: "76911",
     name: "007 Aston Martin DB5", year: 2022, pieces: 298,
     cars: [
       {
@@ -374,7 +374,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76912", owned: true,
+    setNum: "76912",
     name: "Fast & Furious 1970 Dodge Charger R/T", year: 2022, pieces: 345,
     cars: [
       {
@@ -391,7 +391,7 @@ export const sets: LegoSet[] = [
 
   // ──────────────── 2023 ────────────────
   {
-    setNum: "30657", owned: false,
+    setNum: "30657",
     name: "McLaren Solus GT", year: 2023, pieces: 95, polybag: true,
     cars: [
       {
@@ -406,7 +406,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76914", owned: false,
+    setNum: "76914",
     name: "Ferrari 812 Competizione", year: 2023, pieces: 261,
     cars: [
       {
@@ -421,7 +421,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76915", owned: true,
+    setNum: "76915",
     name: "Pagani Utopia", year: 2023, pieces: 249,
     cars: [
       {
@@ -436,7 +436,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76916", owned: true,
+    setNum: "76916",
     name: "Porsche 963", year: 2023, pieces: 280,
     cars: [
       {
@@ -451,7 +451,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76917", owned: true,
+    setNum: "76917",
     name: "2 Fast 2 Furious Nissan Skyline GT-R (R34)", year: 2023, pieces: 319,
     cars: [
       {
@@ -466,7 +466,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76918", owned: true,
+    setNum: "76918",
     name: "McLaren Solus GT & McLaren F1 LM", year: 2023, pieces: 581,
     cars: [
       {
@@ -492,7 +492,7 @@ export const sets: LegoSet[] = [
 
   // ──────────────── 2024 ────────────────
   {
-    setNum: "30683", owned: false,
+    setNum: "30683",
     name: "McLaren Formula 1 Car", year: 2024, pieces: 58, polybag: true,
     cars: [
       {
@@ -507,7 +507,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76919", owned: true,
+    setNum: "76919",
     name: "2023 McLaren Formula 1 Car", year: 2024, pieces: 245,
     cars: [
       {
@@ -522,7 +522,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76920", owned: true,
+    setNum: "76920",
     name: "Ford Mustang Dark Horse", year: 2024, pieces: 344,
     cars: [
       {
@@ -537,7 +537,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76921", owned: true,
+    setNum: "76921",
     name: "Audi S1 e-tron quattro", year: 2024, pieces: 274,
     cars: [
       {
@@ -552,7 +552,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76922", owned: true,
+    setNum: "76922",
     name: "BMW M4 GT3 & BMW M Hybrid V8", year: 2024, pieces: 676,
     cars: [
       {
@@ -576,7 +576,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76923", owned: true,
+    setNum: "76923",
     name: "Lamborghini Lambo V12 Vision Gran Turismo", year: 2024, pieces: 230,
     cars: [
       {
@@ -591,7 +591,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76924", owned: true,
+    setNum: "76924",
     name: "Mercedes-AMG G 63 & Mercedes-AMG SL 63", year: 2024, pieces: 808,
     cars: [
       {
@@ -615,7 +615,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76925", owned: true,
+    setNum: "76925",
     name: "Aston Martin Vantage Safety Car & AMR23", year: 2024, pieces: 564,
     cars: [
       {
@@ -639,7 +639,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76934", owned: true,
+    setNum: "76934",
     name: "Ferrari F40", year: 2024, pieces: 318,
     cars: [
       {
@@ -654,7 +654,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "76935", owned: true,
+    setNum: "76935",
     name: "NASCAR Next Gen Chevrolet Camaro ZL1", year: 2024, pieces: 328,
     cars: [
       {
@@ -671,7 +671,7 @@ export const sets: LegoSet[] = [
 
   // ──────────────── 2025 ────────────────
   {
-    setNum: "30709", owned: false,
+    setNum: "30709",
     name: "Ferrari 499P - Hypercar", year: 2025, pieces: 62, polybag: true,
     cars: [
       {
@@ -686,7 +686,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77237", owned: true,
+    setNum: "77237",
     name: "Dodge Challenger SRT Hellcat", year: 2025, pieces: 390,
     cars: [
       {
@@ -701,7 +701,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77238", owned: true,
+    setNum: "77238",
     name: "Lamborghini Revuelto & Lamborghini Huracán STO", year: 2025, pieces: 607,
     cars: [
       {
@@ -725,7 +725,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77239", owned: true,
+    setNum: "77239",
     name: "Porsche 911 GT3 RS", year: 2025, pieces: 348,
     cars: [
       {
@@ -740,7 +740,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77240", owned: true,
+    setNum: "77240",
     name: "Bugatti Centodieci", year: 2025, pieces: 291,
     cars: [
       {
@@ -755,7 +755,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77241", owned: true,
+    setNum: "77241",
     name: "2 Fast 2 Furious Honda S2000", year: 2025, pieces: 300,
     cars: [
       {
@@ -770,7 +770,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77242", owned: false,
+    setNum: "77242",
     name: "Ferrari SF-24", year: 2025, pieces: 275,
     cars: [
       {
@@ -785,7 +785,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77243", owned: true,
+    setNum: "77243",
     name: "Oracle Red Bull Racing RB20", year: 2025, pieces: 251,
     cars: [
       {
@@ -800,7 +800,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77244", owned: false,
+    setNum: "77244",
     name: "Mercedes-AMG PETRONAS F1 Team W15 E Performance", year: 2025, pieces: 267,
     cars: [
       {
@@ -815,7 +815,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77245", owned: false,
+    setNum: "77245",
     name: "Aston Martin Aramco F1 AMR24", year: 2025, pieces: 269,
     cars: [
       {
@@ -830,7 +830,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77246", owned: false,
+    setNum: "77246",
     name: "Visa Cash App VCARB 01", year: 2025, pieces: 248,
     cars: [
       {
@@ -845,7 +845,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77247", owned: false,
+    setNum: "77247",
     name: "KICK Sauber F1 Team C44", year: 2025, pieces: 259,
     cars: [
       {
@@ -860,7 +860,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77248", owned: false,
+    setNum: "77248",
     name: "BWT Alpine F1 Team A524", year: 2025, pieces: 258,
     cars: [
       {
@@ -875,7 +875,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77249", owned: false,
+    setNum: "77249",
     name: "Williams Racing FW46", year: 2025, pieces: 263,
     cars: [
       {
@@ -890,7 +890,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77250", owned: false,
+    setNum: "77250",
     name: "MoneyGram Haas F1 Team VF-24", year: 2025, pieces: 242,
     cars: [
       {
@@ -905,7 +905,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77251", owned: false,
+    setNum: "77251",
     name: "McLaren F1 Team MCL38", year: 2025, pieces: 269,
     cars: [
       {
@@ -922,7 +922,7 @@ export const sets: LegoSet[] = [
 
   // ──────────────── 2026 ────────────────
   {
-    setNum: "30734", owned: false,
+    setNum: "30734",
     name: "Mini F1 ACADEMY Car", year: 2026, pieces: 58, polybag: true,
     cars: [
       {
@@ -937,7 +937,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77252", owned: true,
+    setNum: "77252",
     name: "APXGP Team Race Car", year: 2026, pieces: 268,
     cars: [
       {
@@ -952,7 +952,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77253", owned: true,
+    setNum: "77253",
     name: "Bugatti Vision Gran Turismo", year: 2026, pieces: 284,
     cars: [
       {
@@ -967,7 +967,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77254", owned: true,
+    setNum: "77254",
     name: "Ferrari SF90 XX Stradale", year: 2026, pieces: 339,
     cars: [
       {
@@ -982,7 +982,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77255", owned: true,
+    setNum: "77255",
     name: "Lightning McQueen", year: 2026, pieces: 270,
     cars: [
       {
@@ -997,7 +997,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77256", owned: true,
+    setNum: "77256",
     name: "Time Machine from Back to the Future", year: 2026, pieces: 357,
     cars: [
       {
@@ -1012,7 +1012,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77257", owned: false,
+    setNum: "77257",
     name: "McLaren W1", year: 2026, pieces: 287,
     cars: [
       {
@@ -1027,7 +1027,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77258", owned: false,
+    setNum: "77258",
     name: "F1 ACADEMY LEGO Race Car", year: 2026, pieces: 201,
     cars: [
       {
@@ -1042,7 +1042,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77259", owned: false,
+    setNum: "77259",
     name: "Audi Revolut F1 Team R26 Race Car", year: 2026, pieces: 215,
     cars: [
       {
@@ -1057,7 +1057,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77260", owned: false,
+    setNum: "77260",
     name: "Fast & Furious Toyota Supra MK4", year: 2026, pieces: 292,
     cars: [
       {
@@ -1072,7 +1072,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77261", owned: true,
+    setNum: "77261",
     name: "Ferrari 499P", year: 2026, pieces: 329,
     cars: [
       {
@@ -1087,7 +1087,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77262", owned: true,
+    setNum: "77262",
     name: "Ken Block's 1965 Ford Mustang Hoonicorn RTR V1", year: 2026, pieces: 345,
     cars: [
       {
@@ -1102,7 +1102,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77263", owned: false,
+    setNum: "77263",
     name: "BMW M3 (E30)", year: 2026, pieces: 358,
     cars: [
       {
@@ -1117,7 +1117,7 @@ export const sets: LegoSet[] = [
     ],
   },
   {
-    setNum: "77264", owned: true,
+    setNum: "77264",
     name: "Jaguar F-TYPE Project 7 & Land Rover Defender Classic", year: 2026, pieces: 740,
     cars: [
       {

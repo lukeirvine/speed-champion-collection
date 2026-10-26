@@ -61,13 +61,44 @@ export interface Car {
   description: string;
 }
 
-export interface LegoSet {
+/** A set as listed in the catalog (sets.ts). */
+export interface CatalogSet {
   setNum: string;
   name: string;
   year: number;
   pieces: number;
-  owned: boolean;
   /** Small promotional polybag sets (30xxx). */
   polybag?: boolean;
   cars: Car[];
+}
+
+/** A catalog set joined with your personal data (me.ts). */
+export interface LegoSet extends CatalogSet {
+  owned: boolean;
+  wishlist: boolean;
+}
+
+/** Preset accent colours; see src/lib/theme.ts. */
+export type TeamColor =
+  | "racing-red"
+  | "ferrari"
+  | "mclaren"
+  | "mercedes"
+  | "red-bull"
+  | "aston-martin"
+  | "alpine"
+  | "williams"
+  | "gulf";
+
+export interface Profile {
+  /** Shown in the tab title and header, e.g. "Luke's Speed Champions". Leave "" for a generic name. */
+  firstName: string;
+  /** Set numbers you own. */
+  owned: string[];
+  /** Set numbers you'd like next. */
+  wishlist: string[];
+  /** metric: km/h, kg, Nm, 0–100 km/h. imperial: mph, lb, lb-ft, 0–62 mph. */
+  units: "metric" | "imperial";
+  /** A preset name, or any hex colour like "#ff8000". */
+  teamColor: TeamColor | `#${string}`;
 }

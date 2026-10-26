@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Russo_One, Titillium_Web } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
+import { me, ownerPossessive, siteName } from "@/data";
+import { teamColorVars } from "@/lib/theme";
 import "./globals.css";
 
 const titillium = Titillium_Web({
@@ -16,15 +18,23 @@ const russo = Russo_One({
 });
 
 export const metadata: Metadata = {
-  title: { default: "Speed Champions Garage", template: "%s · Speed Champions Garage" },
-  description: "My LEGO Speed Champions collection.",
+  title: {
+    default: [ownerPossessive, "LEGO Speed Champions Collection"].filter(Boolean).join(" "),
+    template: `%s · ${siteName}`,
+  },
+  description: `${ownerPossessive || "A"} LEGO Speed Champions collection.`,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" data-theme="pitlane" className={`${titillium.variable} ${russo.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      data-theme="pitlane"
+      className={`${titillium.variable} ${russo.variable} h-full antialiased`}
+      style={teamColorVars(me.teamColor)}
+    >
       <body className="carbon-bg flex min-h-full flex-col font-sans">
-        <Navbar />
+        <Navbar owner={ownerPossessive} />
         <main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-24 pt-6 md:pb-12">{children}</main>
         <footer className="hidden md:block">
           <div className="kerb" />

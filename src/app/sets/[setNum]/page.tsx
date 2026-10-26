@@ -133,7 +133,7 @@ export default async function SetPage({ params }: PageProps<"/sets/[setNum]">) {
           <span>{set.setNum}</span>
         </span>
         <h1 className="font-display text-3xl italic sm:text-4xl">{set.name}</h1>
-        <OwnedBadge owned={set.owned} />
+        <OwnedBadge set={set} />
       </div>
 
       {/* Desktop: LEGO model beside the real car(s) */}

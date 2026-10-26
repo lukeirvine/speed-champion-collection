@@ -1,7 +1,9 @@
+import { me } from "./me";
 import { sets } from "./sets";
 import credits from "./image-credits.json";
 import type { Car, GTCategory, LegoSet, Region } from "./types";
 
+export { me } from "./me";
 export type { Car, GTCategory, LegoSet, Region } from "./types";
 
 export interface ImageCredit {
@@ -10,10 +12,28 @@ export interface ImageCredit {
   sourceUrl: string;
 }
 
+// Fail the build on a mistyped set number rather than silently ignoring it.
+const unknown = [...me.owned, ...me.wishlist].filter((n) => !sets.some((s) => s.setNum === n));
+if (unknown.length) {
+  throw new Error(`me.ts lists set numbers that aren't in sets.ts: ${unknown.join(", ")}`);
+}
+
 /** Oldest first; within a year, by set number. */
-export const allSets: LegoSet[] = [...sets].sort(
-  (a, b) => a.year - b.year || a.setNum.localeCompare(b.setNum),
-);
+export const allSets: LegoSet[] = sets
+  .map((s) => ({
+    ...s,
+    owned: me.owned.includes(s.setNum),
+    wishlist: me.wishlist.includes(s.setNum),
+  }))
+  .sort((a, b) => a.year - b.year || a.setNum.localeCompare(b.setNum));
+
+/** "Luke's", "James'"; empty when no name is set. */
+export const ownerPossessive = me.firstName
+  ? `${me.firstName}${me.firstName.endsWith("s") ? "'" : "'s"}`
+  : "";
+
+/** e.g. "Luke's Speed Champions" */
+export const siteName = [ownerPossessive, "Speed Champions"].filter(Boolean).join(" ");
 
 export const GT_ORDER: GTCategory[] = [
   "N100",

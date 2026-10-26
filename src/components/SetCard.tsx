@@ -22,7 +22,7 @@ export function SetCard({ set }: { set: LegoSet }) {
         <span className="badge badge-neutral slant absolute left-2 top-2 font-display text-xs">
           <span>{set.setNum}</span>
         </span>
-        <OwnedBadge owned={set.owned} className="absolute right-2 top-2" />
+        <OwnedBadge set={set} className="absolute right-2 top-2" />
       </figure>
       <div className={`h-1 ${set.owned ? "bg-success" : "kerb opacity-40 group-hover:opacity-100"}`} />
       <div className="card-body gap-1 p-4">

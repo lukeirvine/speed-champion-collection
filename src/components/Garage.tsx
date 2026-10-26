@@ -11,6 +11,7 @@ const SHOW_TABS: { value: Show; label: string; count: number }[] = [
   { value: "all", label: "All", count: allSets.length },
   { value: "owned", label: "Owned", count: ownedCount },
   { value: "missing", label: "Missing", count: allSets.length - ownedCount },
+  { value: "wishlist", label: "Wishlist", count: allSets.filter((s) => s.wishlist).length },
 ];
 const gtOptions = GT_ORDER.filter((gt) => allSets.some((s) => s.cars.some((c) => c.gtCategory === gt)));
 
