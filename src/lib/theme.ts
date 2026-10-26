@@ -14,14 +14,14 @@ const TEAM_COLORS: Record<TeamColor, [string, string]> = {
   gulf: ["#74c7e8", "#0b1b22"],
 };
 
-/** Dark text on light colours, white on dark ones. */
+/** Dark text on light colors, white on dark ones. */
 function contentFor(hex: string) {
   const n = parseInt(hex.slice(1).padEnd(6, "0").slice(0, 6), 16);
   const [r, g, b] = [n >> 16, (n >> 8) & 255, n & 255];
   return 0.299 * r + 0.587 * g + 0.114 * b > 150 ? "#111111" : "#ffffff";
 }
 
-/** CSS variables that re-tint daisyUI's primary colour. */
+/** CSS variables that re-tint daisyUI's primary color. */
 export function teamColorVars(teamColor: Profile["teamColor"]): CSSProperties {
   const [primary, content] = teamColor.startsWith("#")
     ? [teamColor, contentFor(teamColor)]

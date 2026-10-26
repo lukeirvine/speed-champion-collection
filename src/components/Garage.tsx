@@ -13,6 +13,7 @@ const SHOW_TABS: { value: Show; label: string; count: number }[] = [
   { value: "missing", label: "Missing", count: allSets.length - ownedCount },
   { value: "wishlist", label: "Wishlist", count: allSets.filter((s) => s.wishlist).length },
 ];
+const favoriteCount = allSets.filter((s) => s.favorite).length;
 const gtOptions = GT_ORDER.filter((gt) => allSets.some((s) => s.cars.some((c) => c.gtCategory === gt)));
 
 function Select({
@@ -66,7 +67,7 @@ export function Garage() {
   return (
     <>
       <div className="mb-6 flex flex-col gap-3 rounded-box border border-base-300 bg-base-200/80 p-3 backdrop-blur lg:flex-row lg:items-center">
-        <div role="tablist" className="tabs tabs-box tabs-sm shrink-0 bg-base-300">
+        <div role="tablist" className="tabs tabs-box tabs-sm shrink-0 flex-nowrap bg-base-300 [&>.tab]:px-2.5">
           {SHOW_TABS.map((t) => (
             <button
               key={t.value}
@@ -79,6 +80,14 @@ export function Garage() {
             </button>
           ))}
         </div>
+
+        <button
+          className={`btn btn-sm shrink-0 ${filters.fav ? "btn-primary" : "btn-ghost text-base-content/70"}`}
+          aria-pressed={!!filters.fav}
+          onClick={() => update({ fav: filters.fav ? "" : "1" })}
+        >
+          ♥ Favorites <span className="text-xs opacity-60">{favoriteCount}</span>
+        </button>
 
         <label className="input input-sm w-full lg:max-w-56">
           <svg className="size-4 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>

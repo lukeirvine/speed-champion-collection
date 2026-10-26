@@ -76,9 +76,10 @@ export interface CatalogSet {
 export interface LegoSet extends CatalogSet {
   owned: boolean;
   wishlist: boolean;
+  favorite: boolean;
 }
 
-/** Preset accent colours; see src/lib/theme.ts. */
+/** Preset accent colors; see src/lib/theme.ts. */
 export type TeamColor =
   | "racing-red"
   | "ferrari"
@@ -97,8 +98,12 @@ export interface Profile {
   owned: string[];
   /** Set numbers you'd like next. */
   wishlist: string[];
+  /** Set numbers you love most. */
+  favorites: string[];
+  /** Featured at the top of the garage: a car id (e.g. "ferrari-f40") or a set number. "" for none. */
+  heroCar: string;
   /** metric: km/h, kg, Nm, 0–100 km/h. imperial: mph, lb, lb-ft, 0–62 mph. */
   units: "metric" | "imperial";
-  /** A preset name, or any hex colour like "#ff8000". */
+  /** A preset name, or any hex color like "#ff8000". */
   teamColor: TeamColor | `#${string}`;
 }

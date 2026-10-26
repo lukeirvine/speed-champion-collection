@@ -17,10 +17,12 @@ Everything personal is in [`src/data/me.ts`](src/data/me.ts). The catalog ([`src
 | `firstName` | Names the site, e.g. "Luke's LEGO Speed Champions Collection" in the browser tab and header. Leave `""` for a generic title. |
 | `owned` | Set numbers you own. Every view updates from this list. |
 | `wishlist` | Set numbers you want next. They get a gold ★ badge and a Wishlist tab in the garage. |
+| `favorites` | Set numbers you love most. They get a ♥ and a Favorites filter in the garage. |
+| `heroCar` | Shown as a big banner at the top of the garage, with the real photo, the LEGO model and headline stats. Use a car id from `sets.ts` (e.g. `"ferrari-f40"`, which picks the right car in two-car sets) or a set number. `""` hides it. |
 | `units` | `"imperial"` (mph, lb, lb-ft, 0–62 mph) or `"metric"` (km/h, kg, Nm, 0–100 km/h). |
-| `teamColor` | Accent colour: `racing-red`, `ferrari`, `mclaren`, `mercedes`, `red-bull`, `aston-martin`, `alpine`, `williams`, `gulf`, or any hex such as `"#ff8000"`. |
+| `teamColor` | Accent color: `racing-red`, `ferrari`, `mclaren`, `mercedes`, `red-bull`, `aston-martin`, `alpine`, `williams`, `gulf`, or any hex such as `"#ff8000"`. |
 
-If `owned` or `wishlist` lists a set number that isn't in the catalog, the build stops with an error, so a typo can't fail silently.
+If `owned`, `wishlist`, `favorites` or `heroCar` names a set or car that isn't in the catalog, the build stops with an error, so a typo can't fail silently.
 
 ## Views
 

@@ -235,7 +235,7 @@ export const sets: CatalogSet[] = [
         powerHp: 647, torqueNm: 746, weightKg: 1521, topSpeedKmh: 348, zeroTo100: null,
         tags: ["Supercar","Heritage Livery","Gulf","Le Mans"],
         wikipedia: "Ford_GT", photo: "File:2019 Ford GT Heritage Edition SP21.jpg",
-        description: "The second-generation Ford GT, built by Multimatic in Ontario, marked 50 years since the GT40's 1966 Le Mans win, and its annual Heritage Editions wear the colours of famous GT40 racers. The 2019–2020 car carries the blue-and-orange Gulf livery honouring the GT40 Mk I's back-to-back Le Mans victories in 1968 and 1969, powered by a 647 hp twin-turbo EcoBoost V6.",
+        description: "The second-generation Ford GT, built by Multimatic in Ontario, marked 50 years since the GT40's 1966 Le Mans win, and its annual Heritage Editions wear the colors of famous GT40 racers. The 2019–2020 car carries the blue-and-orange Gulf livery honouring the GT40 Mk I's back-to-back Le Mans victories in 1968 and 1969, powered by a 647 hp twin-turbo EcoBoost V6.",
       },
       {
         id: "ford-bronco-r", make: "Ford", model: "Bronco R", modelYear: 2019,
@@ -992,7 +992,7 @@ export const sets: CatalogSet[] = [
         powerHp: null, torqueNm: null, weightKg: null, topSpeedKmh: null, zeroTo100: null,
         tags: ["Movie Car","Stock Car","Piston Cup"],
         wikipedia: "Lightning_McQueen",
-        description: "Lightning McQueen, the cocky No. 95 rookie voiced by Owen Wilson, is the star of Pixar's Cars franchise. Unlike most of the films' characters, he isn't based on a single real model: designers blended favourite details from cars like the Ford GT40 and Dodge Charger. Over his career he wins seven Piston Cups before mentoring Cruz Ramirez in Cars 3.",
+        description: "Lightning McQueen, the cocky No. 95 rookie voiced by Owen Wilson, is the star of Pixar's Cars franchise. Unlike most of the films' characters, he isn't based on a single real model: designers blended favorite details from cars like the Ford GT40 and Dodge Charger. Over his career he wins seven Piston Cups before mentoring Cruz Ramirez in Cars 3.",
       },
     ],
   },

@@ -6,7 +6,7 @@ import { GtBadges } from "@/components/GtBadges";
 import { OwnedBadge } from "@/components/OwnedBadge";
 import { SetImage } from "@/components/SetImage";
 import { StatBlock } from "@/components/StatBlock";
-import { allSets, carImage, getSet, imageCredit, neighbors, setImage, type Car, type LegoSet } from "@/data";
+import { allSets, carImage, getSet, hero, imageCredit, neighbors, setImage, type Car, type LegoSet } from "@/data";
 
 export function generateStaticParams() {
   return allSets.map((s) => ({ setNum: s.setNum }));
@@ -134,6 +134,8 @@ export default async function SetPage({ params }: PageProps<"/sets/[setNum]">) {
         </span>
         <h1 className="font-display text-3xl italic sm:text-4xl">{set.name}</h1>
         <OwnedBadge set={set} />
+        {set.favorite && <span className="badge badge-primary badge-outline">♥ Favorite</span>}
+        {hero?.set.setNum === set.setNum && <span className="badge badge-primary">Hero car</span>}
       </div>
 
       {/* Desktop: LEGO model beside the real car(s) */}

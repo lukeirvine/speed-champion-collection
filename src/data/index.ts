@@ -13,7 +13,7 @@ export interface ImageCredit {
 }
 
 // Fail the build on a mistyped set number rather than silently ignoring it.
-const unknown = [...me.owned, ...me.wishlist].filter((n) => !sets.some((s) => s.setNum === n));
+const unknown = [...me.owned, ...me.wishlist, ...me.favorites].filter((n) => !sets.some((s) => s.setNum === n));
 if (unknown.length) {
   throw new Error(`me.ts lists set numbers that aren't in sets.ts: ${unknown.join(", ")}`);
 }
@@ -24,8 +24,19 @@ export const allSets: LegoSet[] = sets
     ...s,
     owned: me.owned.includes(s.setNum),
     wishlist: me.wishlist.includes(s.setNum),
+    favorite: me.favorites.includes(s.setNum),
   }))
   .sort((a, b) => a.year - b.year || a.setNum.localeCompare(b.setNum));
+
+/** The car pinned by `me.heroCar` (a car id, or a set number meaning its first car). */
+export const hero: { set: LegoSet; car: Car } | undefined = (() => {
+  if (!me.heroCar) return undefined;
+  const matches = allSets.filter((s) => s.setNum === me.heroCar || s.cars.some((c) => c.id === me.heroCar));
+  // Prefer the full set over a polybag of the same car.
+  const set = matches.find((s) => !s.polybag) ?? matches[0];
+  if (!set) throw new Error(`me.ts heroCar "${me.heroCar}" isn't a car id or set number in sets.ts`);
+  return { set, car: set.cars.find((c) => c.id === me.heroCar) ?? set.cars[0] };
+})();
 
 /** "Luke's", "James'"; empty when no name is set. */
 export const ownerPossessive = me.firstName

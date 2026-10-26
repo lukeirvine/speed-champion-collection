@@ -5,6 +5,8 @@ export type Sort = "newest" | "oldest" | "name" | "pieces";
 
 export interface Filters {
   show: Show;
+  /** "1" = favorites only */
+  fav: string;
   q: string;
   year: string;
   brand: string;
@@ -15,6 +17,7 @@ export interface Filters {
 
 export const DEFAULT_FILTERS: Filters = {
   show: "all",
+  fav: "",
   q: "",
   year: "",
   brand: "",
@@ -62,6 +65,7 @@ export function applyFilters(sets: LegoSet[], f: Filters): LegoSet[] {
         (f.show === "owned" && s.owned) ||
         (f.show === "missing" && !s.owned) ||
         (f.show === "wishlist" && s.wishlist)) &&
+      (!f.fav || s.favorite) &&
       (!f.q || matchesQuery(s, f.q)) &&
       (!f.year || String(s.year) === f.year) &&
       (!f.brand || setBrands(s).includes(f.brand)) &&

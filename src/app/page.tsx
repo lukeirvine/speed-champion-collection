@@ -1,9 +1,10 @@
 import { Suspense } from "react";
 import { Garage } from "@/components/Garage";
+import { HeroCar } from "@/components/HeroCar";
 import { PageHeader } from "@/components/PageHeader";
 import { RadialProgress } from "@/components/RadialProgress";
 import { SetGrid } from "@/components/SetGrid";
-import { allSets, ownerPossessive, pct, stats } from "@/data";
+import { allSets, hero, ownerPossessive, pct, stats } from "@/data";
 
 export default function Home() {
   const s = stats();
@@ -23,6 +24,8 @@ export default function Home() {
           <RadialProgress value={p} />
         </div>
       </PageHeader>
+
+      {hero && <HeroCar set={hero.set} car={hero.car} />}
 
       <Suspense fallback={<SetGrid sets={[...allSets].reverse()} />}>
         <Garage />

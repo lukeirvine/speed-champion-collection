@@ -59,7 +59,23 @@ export const me: Profile = {
   ],
 
   // Sets you'd like next. They get a gold badge and their own tab in the garage.
-  wishlist: [],
+  wishlist: [
+    "77263",
+    "77260",
+    "77257",
+  ],
+
+  // Your favorite sets. They get a ♥ and a Favorites filter in the garage.
+  favorites: [
+    "77239", // Porche 911 GT3 RS
+    "76923", // Lamborghini Lambo V12 Vision Gran Turismo
+    "77253", // Bugatti Vision Gran Turismo
+    "77256", // Time Machine from Back to the Future
+  ],
+
+  // Featured at the top of the garage. A car id from sets.ts (e.g. "ferrari-f40",
+  // handy for two-car sets) or a set number. "" hides it.
+  heroCar: "lamborghini-lambo-v12-vision-gt",
 
   units: "imperial",
 
