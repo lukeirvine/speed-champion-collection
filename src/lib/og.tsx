@@ -5,18 +5,19 @@ import { visibleSets, years } from "@/data";
 import { me } from "@/data/me";
 import { teamColors } from "@/lib/theme";
 
-export const alt = "LEGO Speed Champions Collection";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
-// Rendered once at build time (required by output: "export").
-export const dynamic = "force-static";
+export const OG_IMAGE = {
+  url: "/og.png",
+  alt: "LEGO Speed Champions Collection",
+  width: 1200,
+  height: 630,
+};
 
 const DARK = "#0b0b0d";
 const LIGHT = "#f4f4f5";
 
 /** Two rows of flag squares, like the checkered strip atop the site header. */
 function Checkered({ square }: { square: number }) {
-  const cols = Math.ceil(size.width / square);
+  const cols = Math.ceil(OG_IMAGE.width / square);
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       {[0, 1].map((r) => (
@@ -34,7 +35,7 @@ function Checkered({ square }: { square: number }) {
  * Share card: the header wordmark minus the owner's name, plus a progress bar
  * so it reads as a collection. Rendered to PNG at build time.
  */
-export default async function OpengraphImage() {
+export async function renderOgImage() {
   const russo = await readFile(join(process.cwd(), "src/assets/RussoOne-Regular.ttf"));
   const [primary, onPrimary] = teamColors(me.teamColor);
   const owned = visibleSets.filter((s) => s.owned).length;
@@ -91,7 +92,7 @@ export default async function OpengraphImage() {
 
         {/* Kerb stripe, like the site footer */}
         <div style={{ display: "flex", height: 18, overflow: "hidden" }}>
-          {Array.from({ length: Math.ceil(size.width / 28) + 1 }, (_, i) => (
+          {Array.from({ length: Math.ceil(OG_IMAGE.width / 28) + 1 }, (_, i) => (
             <div
               key={i}
               style={{ width: 28, flexShrink: 0, marginLeft: i ? 0 : -14, background: i % 2 ? LIGHT : primary, transform: "skewX(-45deg)" }}
@@ -100,6 +101,6 @@ export default async function OpengraphImage() {
         </div>
       </div>
     ),
-    { ...size, fonts: [{ name: "Russo One", data: russo, style: "normal", weight: 400 }] },
+    { width: OG_IMAGE.width, height: OG_IMAGE.height, fonts: [{ name: "Russo One", data: russo, style: "normal", weight: 400 }] },
   );
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Russo_One, Titillium_Web } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
 import { me, ownerPossessive, siteName } from "@/data";
+import { OG_IMAGE } from "@/lib/og";
 import { teamColorVars } from "@/lib/theme";
 import "./globals.css";
 
@@ -23,6 +24,8 @@ export const metadata: Metadata = {
     template: `%s · ${siteName}`,
   },
   description: `${ownerPossessive || "A"} LEGO Speed Champions collection.`,
+  openGraph: { images: [OG_IMAGE] },
+  twitter: { card: "summary_large_image", images: [OG_IMAGE] },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
