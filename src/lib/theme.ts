@@ -21,10 +21,13 @@ function contentFor(hex: string) {
   return 0.299 * r + 0.587 * g + 0.114 * b > 150 ? "#111111" : "#ffffff";
 }
 
+/** [accent, text-on-accent] for a preset name or hex. */
+export function teamColors(teamColor: Profile["teamColor"]): [string, string] {
+  return teamColor.startsWith("#") ? [teamColor, contentFor(teamColor)] : TEAM_COLORS[teamColor as TeamColor];
+}
+
 /** CSS variables that re-tint daisyUI's primary color. */
 export function teamColorVars(teamColor: Profile["teamColor"]): CSSProperties {
-  const [primary, content] = teamColor.startsWith("#")
-    ? [teamColor, contentFor(teamColor)]
-    : TEAM_COLORS[teamColor as TeamColor];
+  const [primary, content] = teamColors(teamColor);
   return { "--color-primary": primary, "--color-primary-content": content } as CSSProperties;
 }
